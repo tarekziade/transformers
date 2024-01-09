@@ -21,6 +21,7 @@ from transformers import (
     AutoModelForSeq2SeqLM,
     MBartTokenizer,
     T5ForConditionalGeneration,
+    LongT5ForConditionalGeneration,
 )
 from transformers.models.bart.modeling_bart import shift_tokens_right
 from utils import (
@@ -189,7 +190,9 @@ class SummarizationDistiller(SummarizationModule):
             batch["attention_mask"],
             batch["labels"],
         )
-        if isinstance(self.model, T5ForConditionalGeneration):
+        if isinstance(
+            self.model, (T5ForConditionalGeneration, LongT5ForConditionalGeneration)
+        ):
             decoder_input_ids = self.model._shift_right(labels)
         else:
             decoder_input_ids = shift_tokens_right(labels, pad_token_id)
