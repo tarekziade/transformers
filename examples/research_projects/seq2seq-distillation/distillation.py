@@ -82,7 +82,7 @@ class SummarizationDistiller(SummarizationModule):
             f" {teacher.config.model_type}"
         )
 
-        if student.config.model_type == "t5":
+        if student.config.model_type in ("longt5", "t5"):
             student_encoder_layers = len(student.get_encoder().block)
             student_decoder_layers = len(student.get_decoder().block)
             teacher_encoder_layers = len(teacher.get_encoder().block)
