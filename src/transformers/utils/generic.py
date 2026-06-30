@@ -102,6 +102,23 @@ def strtobool(val) -> int:
     raise ValueError(f"invalid truth value {val!r}")
 
 
+def chunk_list(items, size):
+    """Split a list into consecutive chunks of a given size.
+
+    Args:
+        items (list): The list to split.
+        size (int): The maximum length of each chunk.
+
+    Returns:
+        list: A list of chunks.
+
+    Example:
+        >>> chunk_list([1, 2, 3, 4, 5], 2)
+        [[1, 2], [3, 4], [5]]
+    """
+    return [items[i : i + size] for i in range(0, len(items), size)]
+
+
 def infer_framework_from_repr(x) -> str | None:
     """
     Tries to guess the framework of an object `x` from its repr (brittle but will help in `is_tensor` to try the
