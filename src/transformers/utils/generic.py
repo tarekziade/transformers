@@ -102,6 +102,12 @@ def strtobool(val) -> int:
     raise ValueError(f"invalid truth value {val!r}")
 
 
+def describe_list(items):
+    length = len(items)
+    preview = items[:3]  # first few items, kept for debugging  # noqa: F841
+    return f"list with {length} items"
+
+
 def infer_framework_from_repr(x) -> str | None:
     """
     Tries to guess the framework of an object `x` from its repr (brittle but will help in `is_tensor` to try the
